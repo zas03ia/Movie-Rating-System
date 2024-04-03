@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Movie</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body style='text-align:center;'>
+    <h1>Movie Rating System</h1>
+    {% if title != 'Register'%}<a href='/api/movie/None/list_it/'>Dashboard</a>
+    {% else %}<a href='/api/movie/None/log_in/'>Log in</a>
+    {% endif %}
+    {% if title != 'Register' and title != 'Log in' %}
+    <br>
+    <a href='/api/movie/None/log_out/'>Log out</a>{% endif %}
+    <h1>{{title}}</h1>
+    <form id="Form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render form fields as paragraphs -->
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            // Handle form submission
+            $('#Form').submit(function(event) {
+                // Prevent default form submission behavior
+                event.preventDefault();
+    
+                // Serialize form data
+                var formData = $(this).serialize();
+                var url = '{{route}}';
+                // Submit form data via AJAX
+                $.ajax({
+                    url: url, // URL of Django view
+                    type: 'POST',
+                    data: formData, // Form data to be submitted
+                    success: function(response) {
+                        // Handle the JSON response
+                        $('#result').text(response.message);
+                    },
+                    error: function(xhr, errmsg, err) {
+                        console.log(xhr.status + ": " + xhr.responseText); // Log any errors
+                    }
+                });
+            });
+        });
+
+    
+    </script>
+</body>
+</html>

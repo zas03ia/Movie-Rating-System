@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movies List</title>
+</head>
+<body style='text-align:center;'>
+    <h1>Movie Rating System</h1>
+    <br>
+    <a href='/api/movie/None/create_it/'>Add Movie</a>
+    &nbsp;
+    <a href='/api/movie/None/log_out/'>Log out</a>
+    <h2>Movies List</h2>
+
+    <!-- Search form -->
+    <form id="searchForm" method='post' action='/api/movie/None/search_it/'>
+        <input name='filter' type="text" id="searchInput" placeholder="Search..."> 
+        <button type="submit">Search</button> &nbsp; <a href='/api/movie/None/list_it/'>All Movies</a>
+    </form>
+
+    <!-- Movies list -->
+    <ul id="moviesList">
+        {% for movie,rating in movies %}
+        <hr>
+        <li><p>{{ movie.name }} </p><p> Genre: {{ movie.genre }} </p>  <p> Rating: {{ movie.rating }} </p><p>  Average rating: {{rating}}</p>
+        <br><button><a href="/api/movie/{{movie.id}}/rate_it">Rate this movie</a></button></li>
+        {% endfor %}
+    </ul>
+<div>
+    {% if message %}<p>{{message}}</p>{% endif %}
+</div>
+
+</body>
+</html>

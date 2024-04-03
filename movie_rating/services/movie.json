@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Home Alone",
+        "genre": "Comedy",
+        "rating": "PG",
+        "release_date": "01-04-1996"
+    },
+    {
+        "id": 2,
+        "name": "The Godfather",
+        "genre": "Crime",
+        "rating": "R",
+        "release_date": "01-04-1972"
+    },
+    {
+        "id": 3,
+        "name": "Avengers: Endgame",
+        "genre": "Action",
+        "rating": "PG",
+        "release_date": "01-04-2019"
+    }
+]
